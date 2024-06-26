@@ -14,11 +14,11 @@
   }
 
   .sp_overlay {
-    background-color: black;
-    color: white;
+    background-color: #000;
+    color: #fff;
     margin: 1px 1px 1px 1px;
     display: inline-block;
-    padding: 0px 10px 0px 10px;
+    padding: 2px 20px 2px 20px;
     font-family: 'Roboto', sans-serif;
     font-size: 25px;
   }
@@ -51,12 +51,14 @@
 
   .header-menu-section {
     background-color: #202020;
-    color: white;
+    color: #fff;
     min-width: 100%;
     min-height: 50px;
-    box-shadow: 0 1px 5px #0000001c;
+    box-shadow: 4 4px 5px #0000001c;
+    padding: 15px 20px;
     /*position: fixed; */
     /*margin-bottom: 50px; */
+    background-image: linear-gradient(#202020 -80%, #cd412a 300%);
   }
 
   .footer-section {
@@ -65,7 +67,7 @@
     bottom: 0;
     width: 100%;
     background-color: #202020;
-    color: white;
+    color: #fff;
     text-align: center;
   }
 
@@ -74,7 +76,7 @@
   }
 
   a:hover {
-    color: #D31717;
+    color: #cd412a;
     transition: color ease-in-out 0.5s;
   }
 
@@ -90,12 +92,13 @@
     background-color: #373737;
     background: #373737;
     border: 1px solid #4B4B4B;
+    font-weight: 600;
   }
 
   button:hover {
     transition: 0.3s;
-    color: #fff;
-    background-color: #4D4D4D;
+    color: #cd412a;
+    background-color: #201e1e;
     border: 1px solid #5F5F5F;
   }
 
@@ -110,16 +113,16 @@
     overflow: hidden;
     cursor: pointer;
     color: #fff;
-    border: 0px;
-    background-color: #D31717;
-    background: #D31717;
+    border: 2px solid #cd412a;
+    background-color: #cd412a;
+    background: #cd412a;
   }
 
   .button-subscribe:hover {
-    transition: 0.3s;
-    border: 0px;
-    color: #AAAA9E;
-    background-color: #303030;
+    transition: 0.3 ease all;
+    border: 2px solid #cd412a;
+    color: #cd412a;
+    background-color: #fff;
   }
 
   .menu-titile {
@@ -131,12 +134,12 @@
   }
 
   .menu-titile:active {
-    color: #D31717;
+    color: #cd412a;
   }
 
   body {
     margin: 0;
-    background-color: #222222;
+    background-color: #181818;
     color: #fff;
   }
 
@@ -263,6 +266,25 @@
       height: 20px !important;
       padding: 0px 15px !important;
     }
+  }
+
+  .add-bg {
+    background-image: url(content/background.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .section-image-cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    opacity: 0.5;
   }
 
   /*Tablet View*/
@@ -399,6 +421,10 @@
   }
 
   #content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0px;
     margin-left: 20px;
     margin-right: 20px
   }
@@ -409,40 +435,85 @@
   }
 
   #options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     margin-top: 10px;
     margin-bottom: 10px;
-    background-color: #202020;
+    background-color: #2020209c;
     padding: 20px;
+    border-radius: 6px;
+    border: 2px solid #2e2e2e;
+  }
+
+  #options div {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+    justify-content: flex-start;
   }
 
   canvas {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    background-color: white;
+    background-color: #fff;
     color: #000;
     margin-top: 20px;
     margin-bottom: 20px;
   }
 
   .sp_overlay:hover {
-    background-color: #884a4a;
+    background-color: #cd412a;
     color: #ececec;
   }
+
+  .d-flex-center {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  #preview_content {
+    width: 100%;
+    max-width: calc(100% - 24px);
+    padding: 50px 24px !important;
+    box-sizing: border-box;
+  }
 </style>
-<header>
-  <div class="header-menu-section">
-    <div class="sp-logo"><span><img src="content/logo-png-small.png" alt="StrikerProd09S" width="53" height="45"></span>
-    </div>
-  </div>
-</header>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rust KillFeed Generator | Striker Production</title>
+  <meta name="description"
+    content="Rust Death Notice - HTML: In the HTML file, you can customize Player1 and Player2 names, enable the headshot icon, download the item once or download all items once. To download one item you have to left-click on it, in the bottom page choose the Convert button then from the bottom page the HTML element was converted into a canvas. To download it you have to right-click on element - Save image as... - Select a name and location for the file.">
+  <meta name="keywords" content="rust-killfeed-generator">
+</head>
+
 
 <body>
-  <div
-    style="padding-top: 2em;padding-top: 2em;padding-bottom: 2em;padding-right: 1em;padding-left: 1em;background-color: #181818 !important;margin-bottom: 1em;">
-    <span class="sp_title">SP Death Notice - Rust </span> <button class="button-subscribe" id="customize"
-      onclick="customize()">Customize</button> <button class="button-subscribe" id="content_show"
-      onclick="content_show()">Show Content</button></br>
+  <header>
+    <div class="header-menu-section">
+      <div class="sp-logo">
+        <span class="d-flex-center">
+          <img src="content/logo-png-small.png" alt="StrikerProd09S" width="65" height="65">
+          <h1 class="sp_title">Rust KillFeed Generator</h1>
+        </span>
+      </div>
+    </div>
+  </header>
+  <div class="d-flex-center"
+    style="min-height:200px; position:relative; padding-top: 2em;padding-top: 2em;padding-bottom: 2em;padding-right: 1em;padding-left: 1em;background-color: #181818dc !important;margin-bottom: 1em;">
+    <span class="sp_title">
+      SP Death Notice - Rust
+    </span>
+    <button class="button-subscribe" id="customize" onclick="customize()">Customize</button> <button
+      class="button-subscribe" id="content_show" onclick="content_show()">Show Content</button></br>
     <!-- Options-->
     <div id="options">
       <!-- Download-->
@@ -478,15 +549,16 @@
       <!-- /Background-->
     </div>
     <!-- /Options-->
+    <div class="add-bg section-image-cover"></div>
   </div>
   <div id="content"></div>
   <div style="margin:10px;"></div>
   <!-- Preview -->
-  <div
-    style="border: 2px solid black;background-color: #181818; color:white;padding-left: 20px;padding-right: 20px;padding-top: 20px;padding-bottom: 50px;">
+  <div class="d-flex-center"
+    style="flex-direction:column; gap:24px; border: 2px solid #000;background-color: #181818; color:#fff; padding-left: 20px;padding-right: 20px; padding-top: 20px; padding-bottom: 50px; margin: 0px 30px;">
     <span style="display: block;">Selected Element: </span>
     <div id="preview_content"
-      style="background-color:white;padding-left: 20px;padding-right: 20px;margin:10px;text-align:center;">
+      style="background-color:#fff;padding-left: 20px;padding-right: 20px;margin:10px;text-align:center;">
       <div id="target"></div>
     </div>
 
@@ -496,7 +568,9 @@
   </div>
   <div id="download_img" style="color: #000;padding-left: 20px;padding-right: 20px;margin:10px;text-align:center;">
     <!--<a id="download_link" style="color: #636363;" href="#" download>Download</a> -->
-    <button id="download_link"> Download: Right click on image - Save image as...</button>
+    <button id="download_link"> Download</button>
+    <p style="color: #fff; font-size: 14px; line-height: 19px; font-weight: 500;"> If the fownload don't start: Right
+      click on image - Save image as...</p>
   </div>
 
   <!-- /Preview -->
@@ -536,9 +610,9 @@
       items[i].innerHTML = "";
     }
   });
-  /* Change Background White*/
+  /* Change Background #fff*/
   function bright() {
-    document.body.style.backgroundColor = "white";
+    document.body.style.backgroundColor = "#fff";
     document.getElementById("background").value = "#fff";
   }
   /* Change Background Dark*/
