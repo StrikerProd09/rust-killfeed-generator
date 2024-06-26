@@ -1,0 +1,637 @@
+<style>
+  /*@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');*/
+  @font-face {
+    font-family: "Roboto";
+    src: url("content/Roboto-Medium.ttf");
+  }
+
+  .sp_icon {
+    max-height: 50px;
+    margin-left: 5px;
+    margin-right: 5px;
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+  .sp_overlay {
+    background-color: black;
+    color: white;
+    margin: 1px 1px 1px 1px;
+    display: inline-block;
+    padding: 0px 10px 0px 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+  }
+
+  .sp_overlay p {
+    vertical-align: middle;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    display: inline-block;
+    font-size: 25px;
+  }
+
+  /*  Add font to all content:  */
+  p,
+  div,
+  span,
+  br,
+  li,
+  ul,
+  iframe,
+  a,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .header-menu-section {
+    background-color: #202020;
+    color: white;
+    min-width: 100%;
+    min-height: 50px;
+    box-shadow: 0 1px 5px #0000001c;
+    /*position: fixed; */
+    /*margin-bottom: 50px; */
+  }
+
+  .footer-section {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #202020;
+    color: white;
+    text-align: center;
+  }
+
+  a {
+    color: #FFFFFF;
+  }
+
+  a:hover {
+    color: #D31717;
+    transition: color ease-in-out 0.5s;
+  }
+
+  button {
+    min-width: 12px;
+    height: 32px;
+    padding: 5px 15px;
+    border-radius: 16px;
+    outline: none;
+    overflow: hidden;
+    cursor: pointer;
+    color: #fff;
+    background-color: #373737;
+    background: #373737;
+    border: 1px solid #4B4B4B;
+  }
+
+  button:hover {
+    transition: 0.3s;
+    color: #fff;
+    background-color: #4D4D4D;
+    border: 1px solid #5F5F5F;
+  }
+
+  .button-subscribe {
+    font-weight: 500;
+    white-space: nowrap;
+    min-width: 12px;
+    height: 32px;
+    padding: 5px 15px;
+    border-radius: 2px;
+    outline: none;
+    overflow: hidden;
+    cursor: pointer;
+    color: #fff;
+    border: 0px;
+    background-color: #D31717;
+    background: #D31717;
+  }
+
+  .button-subscribe:hover {
+    transition: 0.3s;
+    border: 0px;
+    color: #AAAA9E;
+    background-color: #303030;
+  }
+
+  .menu-titile {
+    float: left;
+    margin-right: 5px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #fff;
+  }
+
+  .menu-titile:active {
+    color: #D31717;
+  }
+
+  body {
+    margin: 0;
+    background-color: #222222;
+    color: #fff;
+  }
+
+  input[type=text],
+  input[type=password],
+  input[type=number] {
+    border: 1px solid #4B4B4B;
+    border-radius: 16px;
+    min-width: 12px;
+    color: #fff;
+    background-color: #373737;
+    background: #373737;
+    padding: 5px 15px;
+    font-weight: 500;
+  }
+
+  input[type=text]:hover,
+  input[type=password]:hover,
+  input[type=number]:hover {
+    background-color: #4C4C4C;
+    background: #4C4C4C;
+    transition: 0.3s;
+  }
+
+  input[type=text]::placeholder,
+  input[type=password]::placeholder,
+  input[type=number]::placeholder {
+    font-weight: 400;
+    color: #727272;
+  }
+
+  input[type=text]:focus,
+  input[type=password]:focus,
+  input[type=number]:focus,
+  textarea:focus {
+    background-color: #4C4C4C;
+    outline: none;
+    border: 1px solid #fff;
+  }
+
+  #sp-form {
+    float: left;
+  }
+
+  #sp-rules {
+    float: left;
+  }
+
+  #sp-form-button {
+    max-width: 50%;
+    float: left;
+  }
+
+  #sp-success-msg {
+    display: none;
+    max-width: 50%;
+    float: right;
+    color: #62A845
+  }
+
+  .sp-err-ms {
+    display: none;
+    color: #A52B35
+  }
+
+  .sp-field {
+    width: 100%;
+    max-width: 100%
+  }
+
+  /*Phone View*/
+  @media only screen and (max-width: 360px) {
+    .sp-field {
+      margin-top: 0.2em;
+      margin-bottom: 0.2em;
+    }
+
+    .sp-form-fields {
+      margin-right: 0.5em;
+      margin-left: 0.5em;
+    }
+
+    input {
+      font-size: 0.9em;
+    }
+
+    button {
+      font-size: 0.9em;
+    }
+
+    body {
+      font-size: 0.9em;
+    }
+
+    .sp-form-title {
+      margin-right: 1em;
+      margin-left: 1em;
+      text-transform: capitalize;
+    }
+
+    .sp-err-ms {
+      margin-left: 0.4em;
+    }
+
+    .sp-logo {
+      padding-right: 2em;
+      padding-left: 2em;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+      text-align: center;
+    }
+
+    #sp-banner-section {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+
+    #sp-rules {
+      margin-left: 1%;
+      margin-right: 1%;
+    }
+
+    .button-subscribe {
+      height: 20px !important;
+      padding: 0px 15px !important;
+    }
+  }
+
+  /*Tablet View*/
+  @media only screen and (min-width: 360px) and (max-width: 768px) {
+    .sp-field {
+      margin-top: 0.2em;
+      margin-bottom: 0.2em;
+    }
+
+    .sp-form-fields {
+      margin-right: 1em;
+      margin-left: 1em;
+    }
+
+    input {
+      font-size: 0.9em;
+    }
+
+    button {
+      font-size: 0.9em;
+    }
+
+    body {
+      font-size: 0.9em;
+    }
+
+    .sp-form-title {
+      margin-right: 2em;
+      margin-left: 2em;
+      text-transform: capitalize;
+    }
+
+    .sp-err-ms {
+      margin-left: 1.1em;
+    }
+
+    .sp-logo {
+      padding-right: 2em;
+      padding-left: 2em;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+      text-align: center;
+    }
+
+    #sp-banner-section {
+      padding-top: 70px;
+      padding-bottom: 70px;
+    }
+
+    #sp-rules {
+      width: 95%;
+      margin-left: 2%;
+      margin-right: 2%;
+      overflow: hidden;
+    }
+
+    .button-subscribe {
+      height: 20px !important;
+      padding: 0px 15px !important;
+    }
+  }
+
+  /*Desktop View*/
+  @media only screen and (min-width: 768px) {
+    #sp-form {
+      max-width: 50%;
+      width: 50%;
+    }
+
+    #sp-rules {
+      max-width: 45%;
+      width: 45%;
+      margin-left: 2%;
+    }
+
+    .sp-field {
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+    }
+
+    .sp-form-fields {
+      margin-right: 1em;
+      margin-left: 1em;
+    }
+
+    input {
+      font-size: 1.2em;
+    }
+
+    button {
+      font-size: 0.9em;
+    }
+
+    body {
+      font-size: 1em;
+    }
+
+    .sp-form-title {
+      margin-right: 2em;
+      margin-left: 2em;
+      text-transform: capitalize;
+    }
+
+    .sp-err-ms {
+      margin-left: 1.1em;
+    }
+
+    .sp-logo {
+      padding-right: 2em;
+      padding-left: 2em;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+      text-align: center;
+    }
+
+    #sp-banner-section {
+      padding-top: 100px;
+      padding-bottom: 100px;
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1367px) {
+    .sp-field {
+      margin-top: 0.3em !important;
+      margin-bottom: 0.3em !important;
+    }
+  }
+
+  #sp-banner-section {
+    background-image: url("../img/banner/banner_1.jpg");
+    background-repeat: no-repeat;
+    background-position: inherSit;
+    background-size: cover;
+  }
+
+  #content {
+    margin-left: 20px;
+    margin-right: 20px
+  }
+
+  .sp_title {
+    vertical-align: middle;
+    font-size: 20px;
+  }
+
+  #options {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #202020;
+    padding: 20px;
+  }
+
+  canvas {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    color: #000;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .sp_overlay:hover {
+    background-color: #884a4a;
+    color: #ececec;
+  }
+</style>
+<header>
+  <div class="header-menu-section">
+    <div class="sp-logo"><span><img src="content/logo-png-small.png" alt="StrikerProd09S" width="53" height="45"></span>
+    </div>
+  </div>
+</header>
+
+<body>
+  <div
+    style="padding-top: 2em;padding-top: 2em;padding-bottom: 2em;padding-right: 1em;padding-left: 1em;background-color: #181818 !important;margin-bottom: 1em;">
+    <span class="sp_title">SP Death Notice - Rust </span> <button class="button-subscribe" id="customize"
+      onclick="customize()">Customize</button> <button class="button-subscribe" id="content_show"
+      onclick="content_show()">Show Content</button></br>
+    <!-- Options-->
+    <div id="options">
+      <!-- Download-->
+      <div style="margin:3px;">
+        <span>Download: </span>
+        <button id="download1">All Content</button>
+      </div>
+      <!-- /Download-->
+      <!-- Player-->
+      <div style="margin:3px;">
+        <span>Player 1: </span>
+        <input id="player_1" value="" placeholder="Player 1">
+        <span>Player 2: </span>
+        <input id="player_2" value="" placeholder="Player 2">
+        <button class="button-subscribe" id="players_apply" onclick="players_apply()">Apply</button>
+      </div>
+      <!-- /Player-->
+      <!-- Headshot-->
+      <div style="margin:3px;">
+        <span>Headshot: </span>
+        <button id="headshot_1">Enable</button>
+        <button id="headshot_0">Disable</button>
+      </div>
+      <!-- /Headshot-->
+      <!-- Background-->
+      <div style="margin:3px;">
+        <span>Background Color: </span>
+        <button id="bright" onclick="bright()">Bright</button>
+        <button id="dark" onclick="dark()">Dark</button>
+        <input id="background" value="" placeholder="Hex Color">
+        <button class="button-subscribe" id="background_apply" onclick="background_apply()">Apply</button>
+      </div>
+      <!-- /Background-->
+    </div>
+    <!-- /Options-->
+  </div>
+  <div id="content"></div>
+  <div style="margin:10px;"></div>
+  <!-- Preview -->
+  <div
+    style="border: 2px solid black;background-color: #181818; color:white;padding-left: 20px;padding-right: 20px;padding-top: 20px;padding-bottom: 50px;">
+    <span style="display: block;">Selected Element: </span>
+    <div id="preview_content"
+      style="background-color:white;padding-left: 20px;padding-right: 20px;margin:10px;text-align:center;">
+      <div id="target"></div>
+    </div>
+
+    <button id="convert_elem" onclick="takeScreenShot()">Convert</button>
+    <span style="padding: 5px;"></span>
+    <span id="convert_elem_msg">Element converted to image. Scoll down to download it.</span>
+  </div>
+  <div id="download_img" style="color: #000;padding-left: 20px;padding-right: 20px;margin:10px;text-align:center;">
+    <!--<a id="download_link" style="color: #636363;" href="#" download>Download</a> -->
+    <button id="download_link"> Download: Right click on image - Save image as...</button>
+  </div>
+
+  <!-- /Preview -->
+</body>
+<!--Scripts-->
+<script src="content/html2canvas.js"></script>
+<script src="content/jquery.js"></script>
+<script>
+  /*
+  
+  */
+  images = ["Assault Rifle", "Beancan Grenade", "Bolt Action Rifle", "Bone Club", "Bone Knife", "Butcher Knife", "Candy Cane Club", "Chainsaw", "Combat Knife", "Compound Bow", "Crossbow", "Custom SMG", "Double Barrel Shotgun", "Eoka Pistol", "F1 Grenade", "Flame Thrower", "Hatchet", "Hunting Bow", "Jackhammer", "L96 Rifle", "Longsword", "LR-300 Assault Rifle", "M39 Rifle", "M92 Pistol", "M249", "Mace", "Machete", "MP5A4", "Multiple Grenade Launcher", "Nailgun", "Paddle", "Pickaxe", "Pitchfork", "Pump Shotgun", "Python Revolver", "Revolver", "Rock", "Rocket Launcher", "Salvaged Axe", "Salvaged Cleaver", "Salvaged Hammer", "Salvaged Icepick", "Salvaged Sword", "Satchel Charge", "Semi-Automatic Pistol", "Semi-Automatic Rifle", "Snowball Gun", "Snowball", "Spas-12 Shotgun", "Spear", "Stone Hatchet", "Stone Pickaxe", "Stone Spear", "Thompson", "Timed Explosive Charge", "Torch", "Waterpipe Shotgun"];
+  console.log("Length Array: " + images.length);
+  var i; var nr = 0;
+  var text = "";
+  var path = "weapons-icon/";
+  player1 = "Player1";
+  player2 = "Player2";
+  headshot = "Head.png"; //Image File Name
+  for (i = 0; i < images.length; i++) {
+    text += "<div id=" + i + "_" + images[i] + " class='sp_overlay'><p class='player1'>" + player1 + "</p><img class='sp_icon' src='" + path + images[i] + ".png'><span class='headshot'></span><p class='player2'>" + player2 + "</p></div>";
+  }
+  document.getElementById("content").innerHTML = text;
+  /* Functions */
+  /* Headshot */
+  $("#headshot_1").click(function (evt) {
+    console.log("Headshot File Name: " + headshot)
+    var items = document.getElementsByClassName("headshot");
+    for (var i = 0; i < items.length; i++) {
+      items[i].innerHTML = "<img class='sp_icon' src='" + path + headshot + "'>";
+    }
+  });
+  $("#headshot_0").click(function (evt) {
+    console.log("Headshot File Name: " + headshot)
+    var items = document.getElementsByClassName("headshot");
+    for (var i = 0; i < items.length; i++) {
+      items[i].innerHTML = "";
+    }
+  });
+  /* Change Background White*/
+  function bright() {
+    document.body.style.backgroundColor = "white";
+    document.getElementById("background").value = "#fff";
+  }
+  /* Change Background Dark*/
+  function dark() {
+    document.body.style.backgroundColor = "#222222";
+    document.getElementById("background").value = "#222222";
+  }
+  /* Change Background*/
+  function background_apply() {
+    var background = document.getElementById("background").value;
+    document.body.style.backgroundColor = background;
+  }
+  /* Change Players*/
+  function players_apply() {
+    var player_1 = document.getElementById("player_1").value;
+    var player_2 = document.getElementById("player_2").value;
+    console.log("Player 1: " + player_1 + " Player 2: " + player_2)
+    //document.getElementsByClassName("player1").innerHTML = player_1;
+    //document.getElementsByClassName("player2").innerHTML = player_2;
+    var items = document.getElementsByClassName("player1");
+    for (var i = 0; i < items.length; i++) {
+      items[i].innerHTML = player_1;
+    }
+    var items = document.getElementsByClassName("player2");
+    for (var i = 0; i < items.length; i++) {
+      items[i].innerHTML = player_2;
+    }
+
+  }
+  /*Download */
+  $("#options").hide(); $("#download_img").hide(); $("#convert_elem").hide(); $("#convert_elem_msg").hide();
+  function customize() { $("#options").toggle(); }
+  function content_show() { $("#content").toggle(); }
+  /* Add content to download */
+  $(".sp_overlay").click(function (evt) {
+    $("#convert_elem").show();
+    ;
+    var id = $(this).attr("id");
+    console.log('Element selected - ID: ' + id);
+    var preview = document.getElementById(id);
+    console.log("Content " + id + ": " + preview);
+    document.getElementById("target").innerHTML = "<div id='target_preview' id_target=" + id + " class='sp_overlay'>" + preview.innerHTML + "</div>";
+  });
+
+
+  /* Convert from HTML to CANVAS Image
+  // Render options: https://html2canvas.hertzen.com/configuration*/
+  function takeScreenShot() {
+    document.getElementById("download_img").style.display = "block";
+    document.getElementById("convert_elem_msg").style.display = "block";
+
+    html2canvas(document.getElementById("target_preview"), {
+      allowTaint: true,
+      useCORS: true,
+      scale: 2
+    }).then(function (canvas) {
+      canvas.id = "IMG_" + document.getElementById("target_preview").getAttribute("id_target") + "_" + nr;
+      nr++;
+      document.body.appendChild(canvas);
+      canvas.scrollIntoView();
+      // Uncomment if you want to set download link automatically
+      // document.getElementById("download_link").href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+      // document.getElementById(canvas.id).setAttribute("crossorigin", "anonymous");
+      // document.getElementById(canvas.id).setAttribute("download", canvas.id + ".png");
+    });
+
+    document.getElementById("download_link").setAttribute('download', document.getElementById("target_preview").getAttribute("id_target"));
+  }
+
+  $("#download1").click(function (evt) {
+    $("#convert_elem").show();
+    var id = $(this).attr("id");
+    console.log('All Content selected - ID: ' + id);
+    var preview = document.getElementById("content");
+    console.log("Content " + id + ": " + preview);
+    document.getElementById("target").innerHTML = "<div id='target_preview' id_target=" + id + ">" + preview.innerHTML + "</div>";
+  });
+
+  /* Save File */
+  document.getElementById("download_link").addEventListener("click", function (evt) {
+    var canvas = document.querySelector('body canvas:last-of-type');
+    if (canvas) {
+      try {
+        var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+        var link = document.createElement('a');
+        link.download = "my-image.png";
+        link.href = image;
+        link.click();
+      } catch (error) {
+        console.error("Error downloading image: ", error);
+      }
+    } else {
+      console.log("No canvas found.");
+    }
+  });
+</script>
