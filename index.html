@@ -14,7 +14,15 @@
   }
 
   .sp_overlay {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap:6px;
+    min-width: max-content;
+
+
     background-color: #000;
+    border: 2px solid #000;
     color: #fff;
     margin: 1px 1px 1px 1px;
     display: inline-block;
@@ -59,6 +67,7 @@
     /*position: fixed; */
     /*margin-bottom: 50px; */
     background-image: linear-gradient(#202020 -80%, #cd412a 300%);
+    box-sizing: border-box;
   }
 
   .footer-section {
@@ -103,12 +112,12 @@
   }
 
   .button-subscribe {
-    font-weight: 500;
+    font-weight: 600;
     white-space: nowrap;
     min-width: 12px;
     height: 32px;
     padding: 5px 15px;
-    border-radius: 2px;
+    border-radius: 6px;
     outline: none;
     overflow: hidden;
     cursor: pointer;
@@ -139,7 +148,7 @@
 
   body {
     margin: 0;
-    background-color: #181818;
+    background-color: #5e2c23;
     color: #fff;
   }
 
@@ -287,8 +296,14 @@
     opacity: 0.5;
   }
 
+
   /*Tablet View*/
   @media only screen and (min-width: 360px) and (max-width: 768px) {
+    .width-md-100 {
+    width: 100% !important;
+    text-align: center;
+    }
+
     .sp-field {
       margin-top: 0.2em;
       margin-bottom: 0.2em;
@@ -425,8 +440,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 0px;
-    margin-left: 20px;
-    margin-right: 20px
+    margin: 40px 24px;
   }
 
   .sp_title {
@@ -467,6 +481,8 @@
   .sp_overlay:hover {
     background-color: #cd412a;
     color: #ececec;
+    border: 2px solid #252424;
+    cursor: pointer;
   }
 
   .d-flex-center {
@@ -508,12 +524,20 @@
     </div>
   </header>
   <div class="d-flex-center"
-    style="min-height:200px; position:relative; padding-top: 2em;padding-top: 2em;padding-bottom: 2em;padding-right: 1em;padding-left: 1em;background-color: #181818dc !important;margin-bottom: 1em;">
-    <span class="sp_title">
-      SP Death Notice - Rust
-    </span>
-    <button class="button-subscribe" id="customize" onclick="customize()">Customize</button> <button
-      class="button-subscribe" id="content_show" onclick="content_show()">Show Content</button></br>
+    style="flex-direction: column; min-height:200px; position:relative; padding-top: 2em;padding-top: 2em;padding-bottom: 2em;padding-right: 1em;padding-left: 1em;background-color: #181818dc !important;margin-bottom: 1em;">
+    <div class="d-flex-center" style="flex-direction: column; gap:6px;">
+      <span class="sp_title width-md-100">
+        SP Death Notice | Rust
+      </span>
+      <p>Generate RUST Death Notice overlays for video editing fast and simple.</p>
+      <a href="https://sites.google.com/view/strikerproduction/products/rust-killfeed-generator">More details</a>
+    </div>
+    <div class="d-flex-center">
+      <button class="button-subscribe" id="customize" onclick="customize()">Customize</button> 
+      <button class="button-subscribe" id="content_show" onclick="content_show()">Show Content</button>
+    </br>
+    </div>
+
     <!-- Options-->
     <div id="options">
       <!-- Download-->
@@ -555,7 +579,7 @@
   <div style="margin:10px;"></div>
   <!-- Preview -->
   <div class="d-flex-center"
-    style="flex-direction:column; gap:24px; border: 2px solid #000;background-color: #181818; color:#fff; padding-left: 20px;padding-right: 20px; padding-top: 20px; padding-bottom: 50px; margin: 0px 30px;">
+    style="flex-direction:column; gap:24px; border: 2px solid #252525; border-radius: 12px; background-color: #181818; color:#fff; padding-left: 20px;padding-right: 20px; padding-top: 20px; padding-bottom: 50px; margin: 24px 30px 58px 3cap;">
     <span style="display: block;">Selected Element: </span>
     <div id="preview_content"
       style="background-color:#fff;padding-left: 20px;padding-right: 20px;margin:10px;text-align:center;">
