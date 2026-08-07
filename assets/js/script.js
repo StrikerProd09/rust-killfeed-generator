@@ -397,16 +397,28 @@ $(document).ready(function () {
   var cookieAccept = document.getElementById("cookie-accept");
 
   function getConsent() {
-    return localStorage.getItem("rkg_cookie_consent") === "accepted" ||
-      document.cookie.indexOf("rkg_cookie_consent=accepted") !== -1;
+    try {
+      if (localStorage.getItem("rkg_cookie_consent") === "accepted") {
+        return true;
+      }
+    } catch (e) {
+      // ignore
+    }
+    return document.cookie.indexOf("rkg_cookie_consent=accepted") !== -1;
   }
 
   function saveConsent() {
-    localStorage.setItem("rkg_cookie_consent", "accepted");
     var expiry = new Date();
     expiry.setFullYear(expiry.getFullYear() + 1);
     document.cookie =
-      "rkg_cookie_consent=accepted; expires=" + expiry.toUTCString() + "; path=/";
+      "rkg_cookie_consent=accepted; expires=" +
+      expiry.toUTCString() +
+      "; path=/";
+    try {
+      localStorage.setItem("rkg_cookie_consent", "accepted");
+    } catch (e) {
+      // localStorage unavailable; rely on document.cookie above.
+    }
   }
 
   if (cookieNotice) {
