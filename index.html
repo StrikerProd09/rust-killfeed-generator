@@ -1,506 +1,5 @@
-<style>
-  /*@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');*/
-  @font-face {
-    font-family: "Roboto";
-    src: url("content/Roboto-Medium.ttf");
-  }
-
-  .sp_icon {
-    max-height: 50px;
-    margin-left: 5px;
-    margin-right: 5px;
-    vertical-align: middle;
-    display: inline-block;
-  }
-
-  .sp_overlay {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 6px;
-    min-width: max-content;
-
-
-    background-color: #000;
-    border: 2px solid #000;
-    color: #fff;
-    margin: 1px 1px 1px 1px;
-    display: inline-block;
-    padding: 2px 20px 2px 20px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 25px;
-  }
-
-  .sp_overlay p {
-    vertical-align: middle;
-    text-align: center;
-    font-family: 'Roboto', sans-serif;
-    display: inline-block;
-    font-size: 25px;
-  }
-
-  /*  Add font to all content:  */
-  p,
-  div,
-  span,
-  br,
-  li,
-  ul,
-  iframe,
-  a,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: 'Roboto', sans-serif;
-  }
-
-  .header-menu-section {
-    background-color: #202020;
-    color: #fff;
-    min-width: 100%;
-    min-height: 50px;
-    box-shadow: 4 4px 5px #0000001c;
-    padding: 15px 20px;
-    /*position: fixed; */
-    /*margin-bottom: 50px; */
-    background-image: linear-gradient(#202020 -80%, #cd412a 300%);
-    box-sizing: border-box;
-  }
-
-  .footer-section {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #202020;
-    color: #fff;
-    text-align: center;
-  }
-
-  a {
-    color: #FFFFFF;
-  }
-
-  a:hover {
-    color: #cd412a;
-    transition: color ease-in-out 0.5s;
-  }
-
-  button {
-    min-width: 12px;
-    height: 32px;
-    padding: 5px 15px;
-    border-radius: 16px;
-    outline: none;
-    overflow: hidden;
-    cursor: pointer;
-    color: #fff;
-    background-color: #373737;
-    background: #373737;
-    border: 1px solid #4B4B4B;
-    font-weight: 600;
-  }
-
-  button:hover {
-    transition: 0.3s;
-    color: #cd412a;
-    background-color: #201e1e;
-    border: 1px solid #5F5F5F;
-  }
-
-  .button-subscribe {
-    font-weight: 600;
-    white-space: nowrap;
-    min-width: 12px;
-    height: 32px;
-    padding: 5px 15px;
-    border-radius: 6px;
-    outline: none;
-    overflow: hidden;
-    cursor: pointer;
-    color: #fff;
-    border: 2px solid #cd412a;
-    background-color: #cd412a;
-    background: #cd412a;
-  }
-
-  .button-subscribe:hover {
-    transition: 0.3 ease all;
-    border: 2px solid #cd412a;
-    color: #cd412a;
-    background-color: #fff;
-  }
-
-  .menu-titile {
-    float: left;
-    margin-right: 5px;
-    font-weight: bold;
-    font-size: 1.1rem;
-    color: #fff;
-  }
-
-  .menu-titile:active {
-    color: #cd412a;
-  }
-
-  body {
-    margin: 0;
-    background-color: #5e2c23;
-    color: #fff;
-  }
-
-  input[type=text],
-  input[type=password],
-  input[type=number] {
-    border: 1px solid #4B4B4B;
-    border-radius: 16px;
-    min-width: 12px;
-    color: #fff;
-    background-color: #373737;
-    background: #373737;
-    padding: 5px 15px;
-    font-weight: 500;
-  }
-
-  input[type=text]:hover,
-  input[type=password]:hover,
-  input[type=number]:hover {
-    background-color: #4C4C4C;
-    background: #4C4C4C;
-    transition: 0.3s;
-  }
-
-  input[type=text]::placeholder,
-  input[type=password]::placeholder,
-  input[type=number]::placeholder {
-    font-weight: 400;
-    color: #727272;
-  }
-
-  input[type=text]:focus,
-  input[type=password]:focus,
-  input[type=number]:focus,
-  textarea:focus {
-    background-color: #4C4C4C;
-    outline: none;
-    border: 1px solid #fff;
-  }
-
-  #sp-form {
-    float: left;
-  }
-
-  #sp-rules {
-    float: left;
-  }
-
-  #sp-form-button {
-    max-width: 50%;
-    float: left;
-  }
-
-  #sp-success-msg {
-    display: none;
-    max-width: 50%;
-    float: right;
-    color: #62A845
-  }
-
-  .sp-err-ms {
-    display: none;
-    color: #A52B35
-  }
-
-  .sp-field {
-    width: 100%;
-    max-width: 100%
-  }
-
-  /*Phone View*/
-  @media only screen and (max-width: 360px) {
-    .sp-field {
-      margin-top: 0.2em;
-      margin-bottom: 0.2em;
-    }
-
-    .sp-form-fields {
-      margin-right: 0.5em;
-      margin-left: 0.5em;
-    }
-
-    input {
-      font-size: 0.9em;
-    }
-
-    button {
-      font-size: 0.9em;
-    }
-
-    body {
-      font-size: 0.9em;
-    }
-
-    .sp-form-title {
-      margin-right: 1em;
-      margin-left: 1em;
-      text-transform: capitalize;
-    }
-
-    .sp-err-ms {
-      margin-left: 0.4em;
-    }
-
-    .sp-logo {
-      padding-right: 2em;
-      padding-left: 2em;
-      padding-top: 0.5em;
-      padding-bottom: 0.5em;
-      text-align: center;
-    }
-
-    #sp-banner-section {
-      padding-top: 50px;
-      padding-bottom: 50px;
-    }
-
-    #sp-rules {
-      margin-left: 1%;
-      margin-right: 1%;
-    }
-
-    .button-subscribe {
-      height: 20px !important;
-      padding: 0px 15px !important;
-    }
-  }
-
-  .add-bg {
-    background-image: url(content/background.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-
-  .section-image-cover {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: -1;
-    opacity: 0.5;
-  }
-
-
-  /*Tablet View*/
-  @media only screen and (min-width: 360px) and (max-width: 768px) {
-    .width-md-100 {
-      width: 100% !important;
-      text-align: center;
-    }
-
-    .sp-field {
-      margin-top: 0.2em;
-      margin-bottom: 0.2em;
-    }
-
-    .sp-form-fields {
-      margin-right: 1em;
-      margin-left: 1em;
-    }
-
-    input {
-      font-size: 0.9em;
-    }
-
-    button {
-      font-size: 0.9em;
-    }
-
-    body {
-      font-size: 0.9em;
-    }
-
-    .sp-form-title {
-      margin-right: 2em;
-      margin-left: 2em;
-      text-transform: capitalize;
-    }
-
-    .sp-err-ms {
-      margin-left: 1.1em;
-    }
-
-    .sp-logo {
-      padding-right: 2em;
-      padding-left: 2em;
-      padding-top: 0.5em;
-      padding-bottom: 0.5em;
-      text-align: center;
-    }
-
-    #sp-banner-section {
-      padding-top: 70px;
-      padding-bottom: 70px;
-    }
-
-    #sp-rules {
-      width: 95%;
-      margin-left: 2%;
-      margin-right: 2%;
-      overflow: hidden;
-    }
-
-    .button-subscribe {
-      height: 20px !important;
-      padding: 0px 15px !important;
-    }
-  }
-
-  /*Desktop View*/
-  @media only screen and (min-width: 768px) {
-    #sp-form {
-      max-width: 50%;
-      width: 50%;
-    }
-
-    #sp-rules {
-      max-width: 45%;
-      width: 45%;
-      margin-left: 2%;
-    }
-
-    .sp-field {
-      margin-top: 0.5em;
-      margin-bottom: 0.5em;
-    }
-
-    .sp-form-fields {
-      margin-right: 1em;
-      margin-left: 1em;
-    }
-
-    input {
-      font-size: 1.2em;
-    }
-
-    button {
-      font-size: 0.9em;
-    }
-
-    body {
-      font-size: 1em;
-    }
-
-    .sp-form-title {
-      margin-right: 2em;
-      margin-left: 2em;
-      text-transform: capitalize;
-    }
-
-    .sp-err-ms {
-      margin-left: 1.1em;
-    }
-
-    .sp-logo {
-      padding-right: 2em;
-      padding-left: 2em;
-      padding-top: 0.5em;
-      padding-bottom: 0.5em;
-      text-align: center;
-    }
-
-    #sp-banner-section {
-      padding-top: 100px;
-      padding-bottom: 100px;
-    }
-  }
-
-  @media only screen and (min-width: 768px) and (max-width: 1367px) {
-    .sp-field {
-      margin-top: 0.3em !important;
-      margin-bottom: 0.3em !important;
-    }
-  }
-
-  #sp-banner-section {
-    background-image: url("../img/banner/banner_1.jpg");
-    background-repeat: no-repeat;
-    background-position: inherSit;
-    background-size: cover;
-  }
-
-  #content {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0px;
-    margin: 40px 24px;
-  }
-
-  .sp_title {
-    vertical-align: middle;
-    font-size: 20px;
-  }
-
-  #options {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: #2020209c;
-    padding: 20px;
-    border-radius: 6px;
-    border: 2px solid #2e2e2e;
-  }
-
-  #options div {
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-    align-items: center;
-    justify-content: flex-start;
-  }
-
-  canvas {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #fff;
-    color: #000;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-
-  .sp_overlay:hover {
-    background-color: #cd412a;
-    color: #ececec;
-    border: 2px solid #252424;
-    cursor: pointer;
-  }
-
-  .d-flex-center {
-    display: flex;
-    flex-direction: row;
-    gap: 24px;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  #preview_content {
-    width: 100%;
-    max-width: calc(100% - 24px);
-    padding: 50px 24px !important;
-    box-sizing: border-box;
-  }
-</style>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -513,10 +12,12 @@
   <meta property="og:title" content="Rust KillFeed Generator">
   <meta property="og:description"
     content="Create custom Rust death notices and killfeed images instantly. Customize names, headshots, and download your canvas.">
-  <meta property="og:url" content="https://strikerprod09.github.io/rust-killfeed-generator/">
+  <meta property="og:url" content="https://strikerprod09.github.io/rust-killfeed_generator">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Rust KillFeed Generator">
   <meta name="twitter:description" content="Create custom Rust death notices and killfeed images instantly.">
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico">
+  <link rel="stylesheet" href="assets/css/style.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ERK4PD4QH4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -525,227 +26,333 @@
 
     gtag('config', 'G-ERK4PD4QH4');
   </script>
+  <script src="assets/js/html2canvas.js"></script>
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/banner-slider.js"></script>
+  <script src="assets/js/gameplay-player.js"></script>
+  <script src="assets/js/popup.js"></script>
+  <script src="assets/js/script.js"></script>
 </head>
-
 
 <body>
   <header>
-    <div class="header-menu-section">
-      <div class="sp-logo">
-        <span class="d-flex-center">
-          <img src="content/logo-png-small.png" alt="StrikerProd09S" width="65" height="65">
-          <h1 class="sp_title">Rust KillFeed Generator</h1>
-        </span>
+    <div class="site-header-bar">
+      <a class="brand" href="#home">
+        <img src="assets/img/logo/logo_wide.webp" alt="Rust KillFeed Generator Logo" width="363" height="120"
+          class="logo-img">
+        <span class="site-title" style="display:none">Rust <span style="color:var(--rkg-color-primary)">KillFeed</span>
+          Generator</span>
+      </a>
+      <div class="main-nav-section">
+        <nav class="main-nav">
+          <a href="#home">Home</a>
+          <a href="#rust-killfeed-generator">Generator</a>
+          <a href="#how-to-use">How to Use
+          </a>
+        </nav>
+        <button class="nav-share" id="nav-share" type="button" aria-label="Share link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+            <path d="M16 6l-4-4-4 4"></path>
+            <path d="M12 2v13"></path>
+          </svg>
+          <span class="nav-share-label" id="nav-share-label">Copied</span>
+        </button>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+          <svg class="nav-toggle-icon nav-icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 6h18"></path>
+            <path d="M3 12h18"></path>
+            <path d="M3 18h18"></path>
+          </svg>
+          <svg class="nav-toggle-icon nav-icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6L6 18"></path>
+            <path d="M6 6l12 12"></path>
+          </svg>
+        </button>
       </div>
     </div>
   </header>
-  <div class="d-flex-center"
-    style="flex-direction: column; min-height:200px; position:relative; padding-top: 2em;padding-top: 2em;padding-bottom: 2em;padding-right: 1em;padding-left: 1em;background-color: #181818dc !important;margin-bottom: 1em;">
-    <div class="d-flex-center" style="flex-direction: column; gap:6px;">
-      <span class="sp_title width-md-100">
-        SP Death Notice | Rust
-      </span>
-      <p style="text-align: center;">Generate RUST Death Notice overlays for video editing fast and simple.</p>
-      <a href="https://sites.google.com/view/strikerproduction/products/rust-killfeed-generator">More details</a>
-    </div>
-    <div class="d-flex-center">
-      <button class="button-subscribe" id="customize" onclick="customize()">Customize</button>
-      <button class="button-subscribe" id="content_show" onclick="content_show()">Show Content</button>
-      </br>
-    </div>
 
-    <!-- Options-->
-    <div id="options">
-      <!-- Download-->
-      <div style="margin:3px; flex-wrap: wrap;">
-        <span>Download: </span>
-        <button id="download1">All Content</button>
-      </div>
-      <!-- /Download-->
-      <!-- Player-->
-      <div style="margin:3px; flex-wrap: wrap;">
-        <span>Player 1: </span>
-        <input id="player_1" value="" placeholder="Player 1">
-        <span>Player 2: </span>
-        <input id="player_2" value="" placeholder="Player 2">
-        <button class="button-subscribe" id="players_apply" onclick="players_apply()">Apply</button>
-      </div>
-      <!-- /Player-->
-      <!-- Headshot-->
-      <div style="margin:3px; flex-wrap: wrap;">
-        <span>Headshot: </span>
-        <button id="headshot_1">Enable</button>
-        <button id="headshot_0">Disable</button>
-      </div>
-      <!-- /Headshot-->
-      <!-- Background-->
-      <div style="margin:3px; flex-wrap: wrap;">
-        <span>Background Color: </span>
-        <button id="bright" onclick="bright()">Bright</button>
-        <button id="dark" onclick="dark()">Dark</button>
-        <input id="background" value="" placeholder="Hex Color">
-        <button class="button-subscribe" id="background_apply" onclick="background_apply()">Apply</button>
-      </div>
-      <!-- /Background-->
-    </div>
-    <!-- /Options-->
-    <div class="add-bg section-image-cover"></div>
-  </div>
-  <div id="content"></div>
-  <div style="margin:10px;"></div>
-  <!-- Preview -->
-  <div class="d-flex-center"
-    style="flex-direction:column; gap:24px; border: 2px solid #252525; border-radius: 12px; background-color: #181818; color:#fff; padding-left: 20px;padding-right: 20px; padding-top: 20px; padding-bottom: 50px; margin: 24px 30px 58px 3cap;">
-    <span style="display: block;">Selected Element: </span>
-    <div id="preview_content"
-      style="background-color:#fff;padding-left: 20px;padding-right: 20px;margin:10px;text-align:center;">
-      <div id="target"></div>
-    </div>
+  <main class="overlay-noise">
+    <article>
+      <section class="hero" id="home">
+        <div class="hero-inner">
+          <span class="site-title width-md-100">Rust <span style="color:var(--rkg-color-primary)">KillFeed</span>
+            Generator</span>
+          <p class="hero-subtitle">Generate <span style="font-style: italic;">RUST Death Notice Overlays</span> for
+            photo-video editing, fast and simple to use.</p>
+          <div class="time"><span>Published on: </span>
+            <svg width="12px" height="12px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 8V12L15 15" stroke="var(--rkg-color-white)" stroke-width="2" stroke-linecap="round" />
+              <circle cx="12" cy="12" r="9" stroke="var(--rkg-color-white)" stroke-width="2" />
+            </svg>
+            <time datetime="2021-04">April 2021</time>
+          </div>
+        </div>
+        <div class="hero-background" role="img" aria-label="Rust KillFeed Generator preview image"></div>
+      </section>
 
-    <button id="convert_elem" onclick="takeScreenShot()">Convert</button>
-    <span style="padding: 5px;"></span>
-    <span id="convert_elem_msg">Element converted to image. Scoll down to download it.</span>
-  </div>
-  <div id="download_img" style="color: #000;padding-left: 20px;padding-right: 20px;margin:10px;text-align:center;">
-    <!--<a id="download_link" style="color: #636363;" href="#" download>Download</a> -->
-    <button id="download_link"> Download</button>
-    <p style="color: #fff; font-size: 14px; line-height: 19px; font-weight: 500;"> If the fownload don't start: Right
-      click on image - Save image as...</p>
-  </div>
+      <div class="container">
+        <section class="settings-tab overlay-noise">
+          <h2>Settings</h2>
+          <div class="settings-actions">
+            <button class="btn btn-primary btn-active" id="customize" onclick="customize()">Options</button>
+            <a href="#preview-killfeed-gameplay" class="btn btn-primary">Preview</a>
+            <button class="btn btn-secondary" id="download_psd"
+              onclick="location.href='assets/psd/rust_death_notice.psd'">PSD
+              Template</button>
+          </div>
+          <div id="options">
+            <div class="option-group">
+              <span>Download: </span>
+              <label class="custom-checkbox" id="all-content-checkbox">
+                <input type="checkbox" id="download1" name="download1">
+                <span class="checkmark"></span>
+                <span class="check-label">All Content</span>
+              </label>
+            </div>
+            <div class="option-group">
+              <span>Player 1: </span>
+              <input type="text" id="player_1" value="" placeholder="Player 1">
+              <span>Player 2: </span>
+              <input type="text" id="player_2" value="" placeholder="Player 2">
+              <button class="btn btn-primary" onclick="players_apply()">Apply</button>
+            </div>
+            <div class="option-group">
+              <span>Headshot: </span>
+              <button class="btn btn-secondary" id="headshot_1">Enable</button>
+              <button class="btn btn-secondary" id="headshot_0">Disable</button>
+            </div>
+            <div class="option-group">
+              <span>Background Color: </span>
+              <button class="btn btn-secondary" id="bright" onclick="bright()">Bright</button>
+              <button class="btn btn-secondary" id="dark" onclick="dark()">Dark</button>
+              <input type="text" id="background_overlay" value="" placeholder="Hex Color">
+              <button class="btn btn-primary" onclick="background_apply()">Apply</button>
+            </div>
+            <section class="item-style-tab">
+              <h3>Item Style</h3>
+              <div class="option-group">
+                <span>Font Size: </span>
+                <input id="item_font_size" type="number" value="25" min="8" max="120">
+                <span>px</span>
+                <span>Font Family: </span>
+                <input id="item_font_family" type="text" value="Roboto-Medium">
+              </div>
+              <div class="option-group">
+                <span>Font URL: </span>
+                <input id="item_font_src" type="text" placeholder="https://.../font.woff2">
+                <button class="btn btn-secondary" id="item_font_load" onclick="loadFontFromUrl()">Load Font</button>
+              </div>
+              <div class="option-group">
+                <span>Padding X: </span>
+                <input id="item_p_x" type="number" value="20" min="0" max="200">
+                <span>Padding Y: </span>
+                <input id="item_p_y" type="number" value="6" min="0" max="200">
+              </div>
+              <div class="option-group">
+                <span>Text Color: </span>
+                <input id="item_font_color" type="color" value="#ffffff">
+                <span>Background: </span>
+                <input id="item_bg_color" type="color" value="#0c0c0c">
+                <span>Border Width: </span>
+                <input id="item_border_width" type="number" value="2" min="0" max="20">
+                <span>Border Color: </span>
+                <input id="item_border_color" type="color" value="#1d1d1d">
+              </div>
+            </section>
+          </div>
 
-  <!-- /Preview -->
+        </section>
+        <section style="margin-top: var(--rkg-size-xl)">
+          <h3>Choose an element:</h3>
+        </section>
+        <div id="rust-killfeed-generator"></div>
+      </div>
+
+      <section class="output-section" id="rust-killfeed-generator-output">
+        <div id="preview-box-output" class="flex-center preview-box overlay-noise"">
+          <span style=" display: block;">Selected Element: </span>
+          <div id="preview_content">
+            <div id="target"></div>
+          </div>
+          <button class="btn btn-primary" id="convert_elem" onclick="takeScreenShot()">Convert</button>
+          <span id="convert_elem_msg">Element converted to image. Scoll down to download it.</span>
+        </div>
+        <div id="download_img">
+
+          <button class="btn btn-primary" id="download_link">Download</button>
+          <p>If the download don't start: Right click on image - Save image as...</p>
+        </div>
+      </section>
+
+      <section class="preview-killfeed-gameplay" id="preview-killfeed-gameplay">
+
+        <div class="gameplay" root="assets/vid/gameplay/gameplay_1.webm" killfeed-item-start="30" killfeed-item-end="45"
+          fps="24" data-popup="true">
+          <div id="21_LR-300" assault="" rifle="" class="killfeed-item">
+            <p class="player1">Player</p><img class="sp_icon" src="assets/img/weapons-icon/LR-300 Assault Rifle.webp"
+              alt="Weapon"><span class="headshot"></span>
+            <p class="player2">Enemy</p>
+          </div>
+        </div>
+
+        <div class="gameplay" root="assets/vid/gameplay/gameplay_2.webm" fps="24" killfeed-item-start="35"
+          killfeed-item-end="65" data-popup="true">
+          <div id="19_L96" rifle="" class="killfeed-item">
+            <p class="player1">Player</p><img class="sp_icon" src="assets/img/weapons-icon/L96 Rifle.webp"
+              alt="Weapon"><span class="headshot"></span>
+            <p class="player2">Enemy</p>
+          </div>
+        </div>
+
+        <div class="gameplay" root="assets/vid/gameplay/gameplay_3.webm" fps="24" killfeed-item-start="5"
+          killfeed-item-end="28" data-popup="true">
+          <div id="2_Bolt" action="" rifle="" class="killfeed-item">
+            <p class="player1">Player</p><img class="sp_icon" src="assets/img/weapons-icon/Bolt Action Rifle.webp"
+              alt="Weapon"><span class="headshot"></span>
+            <p class="player2">Enemy</p>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="how-to-use-section overlay-noise" id="how-to-use">
+        <h2>How to Use</h2>
+        <hr class="divider">
+        <p>In the page, you can customize Player 1 and Player 2 names, enable the headshot icon, download a single
+          item, or download all items at once.</p>
+        <p><strong>To download a single item:</strong></p>
+        <ol>
+          <li>Left-click on the item you want to download.</li>
+          <li>Scroll to the bottom of the page and click the <strong>Convert</strong> button to transform the HTML
+            element into a canvas.</li>
+          <li>use the <strong>Download</strong> button or Right-click on the generated canvas element, select
+            <strong>Save image as...</strong>, and choose a name
+            and location for your file.
+          </li>
+        </ol>
+        <a class="btn btn-secondary" style="margin-top: var(--rkg-size-xl)"
+          href="https://sites.google.com/view/strikerproduction/products/rust-killfeed-generator">More details</a>
+        <img src="assets/img/tutorial/tutorial.webp.webp" alt="Tutorial" width="1640" height="370"
+          style="width:100%;max-width:100%;height:auto;margin-top:var(--rkg-size-md)">
+      </section>
+
+      <aside>
+        <item style="margin-bottom: var(--rkg-size-md);">
+          <div class="banner-slider" id="banner-slider">
+            <div class="banner-slider-track" id="banner-slider-track">
+              <img class="aside-image banner-slide" data-popup="true"
+                src="assets/img/banners/killfeed_generator/rust-killfeed-generator_image_1.webp"
+                alt="Killfeed Generator Banner 1" width="250">
+              <img class="aside-image banner-slide" data-popup="true"
+                src="assets/img/banners/killfeed_generator/rust-killfeed-generator_image_2.webp"
+                alt="Killfeed Generator Banner 2" width="250">
+              <img class="aside-image banner-slide" data-popup="true"
+                src="assets/img/banners/killfeed_generator/rust-killfeed-generator_image_3.webp"
+                alt="Killfeed Generator Banner 3" width="250">
+              <img class="aside-image banner-slide" data-popup="true"
+                src="assets/img/banners/killfeed_generatorrust-killfeed-generator_image_4.webp"
+                alt="Killfeed Generator Banner 4" width="250">
+              <img class="aside-image banner-slide" data-popup="true"
+                src="assets/img/banners/killfeed_generator/rust-killfeed-generator_image_5.webp"
+                alt="Killfeed Generator Banner 5" width="250">
+            </div>
+            <button class="banner-slider-arrow banner-slider-prev" type="button" aria-label="Previous slide">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M15 18l-6-6 6-6"></path>
+              </svg>
+            </button>
+            <button class="banner-slider-arrow banner-slider-next" type="button" aria-label="Next slide">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M9 18l6-6-6-6"></path>
+              </svg>
+            </button>
+            <div class="banner-slider-dots" id="banner-slider-dots"></div>
+          </div>
+        </item>
+        <item>
+          <img class="aside-image" src="assets/img/banners/rust_editing_contest/rust_editing_contest_about.webp"
+            alt="Rust Editing Contents- Competitions" width="250" height="auto" data-popup="true">
+          <h3 class="aside-title">About Video Editing</h3>
+          <p class="aside-description">Rust Editing Contest is a series of competitions for advanced editors and for new
+            editors who have potential in this field of video editing. The purpose of the context is to assess the
+            editing skills. This also comes with great exposure for potential winners.</p>
+          <a class="btn btn-secondary aside-button"
+            href="https://sites.google.com/view/strikerproduction/contests/rust-editing-contest">About</a>
+        </item>
+        <item>
+          <img class="aside-image" src="assets/img/banners/rust_editing_contest/rust_editing_contest_competitions.webp"
+            alt="Rust Video Editing Competitions" width="250" height="auto" data-popup="true">
+          <h3 class="aside-title">Video Editing Competitions</h3>
+          <p class="aside-description">Rust Editing Contest is a series of competitions for advanced editors and for new
+            editors who have potential in this field of video editing. The purpose of the context is to assess the
+            editing skills. This also comes with great exposure for potential winners.</p>
+          <a class="btn btn-secondary aside-button"
+            href="https://www.youtube.com/watch?v=zS0PYtJAGRs&list=PLm3Prvo0l7fMwUREdkPrCkQIHU8VkahAr">View
+            Competitions</a>
+        </item>
+        <item>
+          <img class="aside-image" src="assets/img/banners/rust_editing_contest/rust_editing_contest_clips.webp"
+            alt="Rust Video Clips" width="250" height="auto" data-popup="true">
+          <h3 class="aside-title">Video Clips</h3>
+          <p class="aside-description">Free Rust clips packs for video editing.</p>
+          <p class="aside-description">Packs have POV, cinematics, and sound effects of the game.
+          </p>
+          <a class="btn btn-secondary aside-button"
+            href="https://drive.google.com/drive/folders/18mXwO-Pr12Kf25mXmRLWfmyerQx8bdjy?usp=sharing">Downloand</a>
+        </item>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="overlay-noise">
+    <div class="footer-columns">
+      <div class="footer-section">
+        <a class="brand" href="#home">
+          <img src="assets/img/logo/logo_bg.webp" alt="StrikerProd09S" width="70" height="70">
+          <span class="site-title">Rust <span style="color:var(--rkg-color-primary)">KillFeed</span>
+            <br><span>Generator</span></span>
+        </a>
+        <p class="footer-rights">All rights reserved by Striker Production</p>
+        <div class="footer-socials">
+          <a class="footer-social" href="https://www.youtube.com/@strikerproduction" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z" />
+            </svg>
+          </a>
+          <a class="footer-social" href="https://sites.google.com/view/strikerproduction/" aria-label="Website">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm7.07 6h-2.95a15.6 15.6 0 0 0-1.38-3.2A8.03 8.03 0 0 1 19.07 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14a8.05 8.05 0 0 1 0-4h3.08c-.06.66-.09 1.32-.09 2s.03 1.34.09 2H4.26zM5 17h2.1c.35 1.15.82 2.23 1.39 3.2A7.98 7.98 0 0 1 5 17zm1.9-5h2.91a17.5 17.5 0 0 0 0 4H6.9a17.6 17.6 0 0 1 0-4zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 16h-4.68a15.5 15.5 0 0 1 0-4h4.68c.2 1.32.2 2.68 0 4zm.86 4.2c.57-.97 1.11-2.05 1.39-3.2H19a7.98 7.98 0 0 1-3.8 3.2zM16.6 12c.06-.66.09-1.32.09-2s-.03-1.34-.09-2h2.55a8.05 8.05 0 0 1 0 4H16.6zM19.65 8h-2.32a15.6 15.6 0 0 0 1.04-2.68A8.03 8.03 0 0 1 19.65 8zM7.63 5.32A15.6 15.6 0 0 0 6.25 8H3.93a8.03 8.03 0 0 1 3.7-2.68z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h3 class="footer-links-title">Links</h3>
+        <ul class="footer-links">
+          <li><a href="https://sites.google.com/view/strikerproduction/contests/rust-editing-contest">About Editing
+              Contest</a></li>
+          <li><a href="https://www.youtube.com/watch?v=zS0PYtJAGRs&amp;list=PLm3Prvo0l7fMwUREdkPrCkQIHU8VkahAr">Video
+              Editing Competitions</a></li>
+          <li><a href="https://drive.google.com/drive/folders/18mXwO-Pr12Kf25mXmRLWfmyerQx8bdjy">Video Clips</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cookie-notice" id="cookie-notice">
+    <p class="cookie-notice-text">This website uses cookies and tracks user interactions to measure site performance.
+      We use Google Analytics to understand how visitors use this site and to improve our content.</p>
+    <button class="btn btn-secondary aside-button cookie-accept" id="cookie-accept" type="button">I understand</button>
+  </div>
 </body>
-<!--Scripts-->
-<script src="content/html2canvas.js"></script>
-<script src="content/jquery.js"></script>
-<script>
-  /*
-  
-  */
-  images = ["Assault Rifle", "Beancan Grenade", "Bolt Action Rifle", "Bone Club", "Bone Knife", "Butcher Knife", "Candy Cane Club", "Chainsaw", "Combat Knife", "Compound Bow", "Crossbow", "Custom SMG", "Double Barrel Shotgun", "Eoka Pistol", "F1 Grenade", "Flame Thrower", "Hatchet", "Hunting Bow", "Jackhammer", "L96 Rifle", "Longsword", "LR-300 Assault Rifle", "M39 Rifle", "M92 Pistol", "M249", "Mace", "Machete", "MP5A4", "Multiple Grenade Launcher", "Nailgun", "Paddle", "Pickaxe", "Pitchfork", "Pump Shotgun", "Python Revolver", "Revolver", "Rock", "Rocket Launcher", "Salvaged Axe", "Salvaged Cleaver", "Salvaged Hammer", "Salvaged Icepick", "Salvaged Sword", "Satchel Charge", "Semi-Automatic Pistol", "Semi-Automatic Rifle", "Snowball Gun", "Snowball", "Spas-12 Shotgun", "Spear", "Stone Hatchet", "Stone Pickaxe", "Stone Spear", "Thompson", "Timed Explosive Charge", "Torch", "Waterpipe Shotgun"];
-  console.log("Length Array: " + images.length);
-  var i; var nr = 0;
-  var text = "";
-  var path = "weapons-icon/";
-  player1 = "Player1";
-  player2 = "Player2";
-  headshot = "Head.png"; //Image File Name
-  for (i = 0; i < images.length; i++) {
-    text += "<div id=" + i + "_" + images[i] + " class='sp_overlay'><p class='player1'>" + player1 + "</p><img class='sp_icon' src='" + path + images[i] + ".png'><span class='headshot'></span><p class='player2'>" + player2 + "</p></div>";
-  }
-  document.getElementById("content").innerHTML = text;
-  /* Functions */
-  /* Headshot */
-  $("#headshot_1").click(function (evt) {
-    console.log("Headshot File Name: " + headshot)
-    var items = document.getElementsByClassName("headshot");
-    for (var i = 0; i < items.length; i++) {
-      items[i].innerHTML = "<img class='sp_icon' src='" + path + headshot + "'>";
-    }
-  });
-  $("#headshot_0").click(function (evt) {
-    console.log("Headshot File Name: " + headshot)
-    var items = document.getElementsByClassName("headshot");
-    for (var i = 0; i < items.length; i++) {
-      items[i].innerHTML = "";
-    }
-  });
-  /* Change Background #fff*/
-  function bright() {
-    document.body.style.backgroundColor = "#fff";
-    document.getElementById("background").value = "#fff";
-  }
-  /* Change Background Dark*/
-  function dark() {
-    document.body.style.backgroundColor = "#222222";
-    document.getElementById("background").value = "#222222";
-  }
-  /* Change Background*/
-  function background_apply() {
-    var background = document.getElementById("background").value;
-    document.body.style.backgroundColor = background;
-  }
-  /* Change Players*/
-  function players_apply() {
-    var player_1 = document.getElementById("player_1").value;
-    var player_2 = document.getElementById("player_2").value;
-    console.log("Player 1: " + player_1 + " Player 2: " + player_2)
-    //document.getElementsByClassName("player1").innerHTML = player_1;
-    //document.getElementsByClassName("player2").innerHTML = player_2;
-    var items = document.getElementsByClassName("player1");
-    for (var i = 0; i < items.length; i++) {
-      items[i].innerHTML = player_1;
-    }
-    var items = document.getElementsByClassName("player2");
-    for (var i = 0; i < items.length; i++) {
-      items[i].innerHTML = player_2;
-    }
 
-  }
-  /*Download */
-  $("#options").hide(); $("#download_img").hide(); $("#convert_elem").hide(); $("#convert_elem_msg").hide();
-  function customize() { $("#options").toggle(); }
-  function content_show() { $("#content").toggle(); }
-  /* Add content to download */
-  $(".sp_overlay").click(function (evt) {
-    $("#convert_elem").show();
-    ;
-    var id = $(this).attr("id");
-    console.log('Element selected - ID: ' + id);
-    var preview = document.getElementById(id);
-    console.log("Content " + id + ": " + preview);
-    document.getElementById("target").innerHTML = "<div id='target_preview' id_target=" + id + " class='sp_overlay'>" + preview.innerHTML + "</div>";
-  });
-
-
-  /* Convert from HTML to CANVAS Image
-  // Render options: https://html2canvas.hertzen.com/configuration*/
-  function takeScreenShot() {
-    document.getElementById("download_img").style.display = "block";
-    document.getElementById("convert_elem_msg").style.display = "block";
-
-    html2canvas(document.getElementById("target_preview"), {
-      allowTaint: true,
-      useCORS: true,
-      scale: 2
-    }).then(function (canvas) {
-      canvas.id = "IMG_" + document.getElementById("target_preview").getAttribute("id_target") + "_" + nr;
-      nr++;
-      document.body.appendChild(canvas);
-      canvas.scrollIntoView();
-      // Uncomment if you want to set download link automatically
-      // document.getElementById("download_link").href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-      // document.getElementById(canvas.id).setAttribute("crossorigin", "anonymous");
-      // document.getElementById(canvas.id).setAttribute("download", canvas.id + ".png");
-    });
-
-    document.getElementById("download_link").setAttribute('download', document.getElementById("target_preview").getAttribute("id_target"));
-  }
-
-  $("#download1").click(function (evt) {
-    $("#convert_elem").show();
-    var id = $(this).attr("id");
-    console.log('All Content selected - ID: ' + id);
-    var preview = document.getElementById("content");
-    console.log("Content " + id + ": " + preview);
-    document.getElementById("target").innerHTML = "<div id='target_preview' id_target=" + id + ">" + preview.innerHTML + "</div>";
-  });
-
-  /* Save File */
-  document.getElementById("download_link").addEventListener("click", function (evt) {
-    var canvas = document.querySelector('body canvas:last-of-type');
-    if (canvas) {
-      try {
-        var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-        var link = document.createElement('a');
-        link.download = "my-image.png";
-        link.href = image;
-        link.click();
-      } catch (error) {
-        console.error("Error downloading image: ", error);
-      }
-    } else {
-      console.log("No canvas found.");
-    }
-  });
-</script>
+</html>
