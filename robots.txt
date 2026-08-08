@@ -1,2 +1,5 @@
 User-agent: *
+Disallow: /index
+Crawl-delay: 10
 Allow: /
+Meta-robots: index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
