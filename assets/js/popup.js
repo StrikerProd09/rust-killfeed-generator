@@ -1,7 +1,7 @@
 (function () {
   var activeOverlay = null;
-  var movedSource = null; // original .gameplay element, if moved into popup
-  var movedParent = null; // original parent to restore on close
+  var movedSource = null;
+  var movedParent = null;
 
   function createPopup() {
     var overlay = document.createElement("div");
@@ -37,8 +37,8 @@
     }
     activeOverlay.classList.add("popup-closing");
     setTimeout(function () {
-      // Move the game element back to where it was, if it was moved in.
       if (movedSource && movedParent) {
+        movedSource.setAttribute("data-popup", "true");
         movedParent.appendChild(movedSource);
         movedSource = null;
         movedParent = null;
@@ -54,14 +54,12 @@
 
     var video = sourceEl.querySelector && sourceEl.querySelector("video");
     if (video) {
-      // Move the original element (with its live video/animation) into the popup.
       movedSource = sourceEl;
       movedParent = sourceEl.parentNode;
+      sourceEl.removeAttribute("data-popup");
       content.appendChild(sourceEl);
     } else {
-      // Static content (e.g. images): clone it to avoid side effects.
       var clone = sourceEl.cloneNode(true);
-      clone.removeAttribute("data-popup");
       clone.removeAttribute("data-popup");
       content.appendChild(clone);
     }
@@ -70,10 +68,11 @@
   }
 
   function init() {
-    document.querySelectorAll("[data-popup='true'], [data-popup='true']").forEach(function (el) {
-      el.addEventListener("click", function () {
-        openPopup(el);
-      });
+    document.addEventListener("click", function (evt) {
+      var trigger = evt.target.closest("[data-popup='true']");
+      if (trigger) {
+        openPopup(trigger);
+      }
     });
   }
 

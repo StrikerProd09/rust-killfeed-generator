@@ -1149,6 +1149,7 @@ canvas {
 }
 
 .popup-content {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1181,7 +1182,7 @@ canvas {
 }
 
 .popup-content .gameplay .gameplay-video {
-  width: 80vw;
+  width: 100%;
   max-width: 100%;
   height: auto;
 }
