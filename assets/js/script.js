@@ -482,20 +482,12 @@ $(document).ready(function () {
     navToggle.addEventListener("click", function () {
       var open = mainNav.classList.toggle("open");
       navToggle.setAttribute("aria-expanded", open ? "true" : "false");
-      navToggle.classList.toggle("nav-toggle-open", open);
-      document.querySelector(".nav-icon-open").style.display = open
-        ? "none"
-        : "block";
-      document.querySelector(".nav-icon-close").style.display = open
-        ? "block"
-        : "none";
+      navToggle.classList.toggle("open", open);
     });
     mainNav.addEventListener("click", function () {
       mainNav.classList.remove("open");
       navToggle.setAttribute("aria-expanded", "false");
-      navToggle.classList.remove("nav-toggle-open");
-      document.querySelector(".nav-icon-open").style.display = "block";
-      document.querySelector(".nav-icon-close").style.display = "none";
+      navToggle.classList.remove("open");
     });
   }
 

@@ -358,8 +358,27 @@ footer {
   display: block;
 }
 
-.nav-icon-close {
-  display: none;
+.nav-toggle-icon path {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+}
+
+/* Open state: morph the three bars into an X */
+.nav-toggle.open .nav-toggle-icon path:nth-of-type(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-toggle.open .nav-toggle-icon path:nth-of-type(2) {
+  opacity: 0;
+}
+
+.nav-toggle.open .nav-toggle-icon path:nth-of-type(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.nav-toggle:hover {
+  color: var(--rkg-color-primary);
 }
 
 @media only screen and (max-width: 1024px) {
@@ -719,14 +738,14 @@ aside {
   color: #fff;
   border: none;
   border-radius: 50%;
-  padding: 2px;
+  padding: 5px;
   cursor: pointer;
   z-index: 2;
 }
 
 .banner-slider-arrow svg {
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   display: block;
 }
 
@@ -1185,6 +1204,16 @@ canvas {
   width: 100%;
   max-width: 100%;
   height: auto;
+}
+
+/* Moved slider in popup displays larger and keeps working controls */
+.popup-content .banner-slider {
+  width: 80vw;
+  max-width: 90vw;
+}
+
+.popup-content .banner-slider .banner-slide {
+  width: 100%;
 }
 
 .popup-close {

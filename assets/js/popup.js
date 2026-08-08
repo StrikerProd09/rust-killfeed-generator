@@ -52,8 +52,13 @@
     var overlay = createPopup();
     var content = overlay.querySelector(".popup-content");
 
-    var video = sourceEl.querySelector && sourceEl.querySelector("video");
-    if (video) {
+    // Elements that hold live behavior (video, buttons, sliders) must be
+    // moved, not cloned, because cloned nodes lose their event listeners.
+    var hasInteraction =
+      sourceEl.querySelector &&
+      sourceEl.querySelector("video, button, input, select, textarea, a");
+
+    if (hasInteraction) {
       movedSource = sourceEl;
       movedParent = sourceEl.parentNode;
       sourceEl.removeAttribute("data-popup");
@@ -71,6 +76,12 @@
     document.addEventListener("click", function (evt) {
       var trigger = evt.target.closest("[data-popup='true']");
       if (trigger) {
+        var interactive = evt.target.closest(
+          "button, input, select, textarea, a, label, [contenteditable]",
+        );
+        if (interactive) {
+          return;
+        }
         openPopup(trigger);
       }
     });

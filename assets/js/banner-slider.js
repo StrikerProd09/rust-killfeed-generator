@@ -15,7 +15,8 @@
       dot.type = "button";
       dot.className = "banner-dot" + (i === 0 ? " active" : "");
       dot.setAttribute("aria-label", "Go to slide " + (i + 1));
-      dot.addEventListener("click", function () {
+      dot.addEventListener("click", function (evt) {
+        evt.stopPropagation();
         goTo(i);
       });
       dots.appendChild(dot);
@@ -23,10 +24,12 @@
 
     var prev = slider.querySelector(".banner-slider-prev");
     var next = slider.querySelector(".banner-slider-next");
-    prev.addEventListener("click", function () {
+    prev.addEventListener("click", function (evt) {
+      evt.stopPropagation();
       goTo(current - 1);
     });
-    next.addEventListener("click", function () {
+    next.addEventListener("click", function (evt) {
+      evt.stopPropagation();
       goTo(current + 1);
     });
 
