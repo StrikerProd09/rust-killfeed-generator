@@ -18,8 +18,6 @@
       return;
     }
 
-    var killfeedItem = gameplay.querySelector(".killfeed-item");
-
     var video = document.createElement("video");
     video.className = "gameplay-video";
     video.src = src;
@@ -33,6 +31,7 @@
     var endTime = end / fps;
 
     function update() {
+      var killfeedItem = gameplay.querySelector(".killfeed-item");
       if (killfeedItem) {
         var visible = video.currentTime >= startTime && video.currentTime <= endTime;
         killfeedItem.style.opacity = visible ? "1" : "0";
