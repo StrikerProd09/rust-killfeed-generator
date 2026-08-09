@@ -1,0 +1,18 @@
+{
+  "images"     : [
+    "Assault Rifle",             "Beancan Grenade",           "Bolt Action Rifle",         "Bone Club",                 "Bone Knife",                "Butcher Knife",
+    "Candy Cane Club",           "Chainsaw",                  "Combat Knife",              "Compound Bow",              "Crossbow",                  "Custom SMG",
+    "Double Barrel Shotgun",     "Eoka Pistol",               "F1 Grenade",                "Flame Thrower",             "Hatchet",                   "Hunting Bow",
+    "Jackhammer",                "L96 Rifle",                 "Longsword",                 "LR-300 Assault Rifle",      "M39 Rifle",                 "M92 Pistol",
+    "M249",                      "Mace",                      "Machete",                   "MP5A4",                     "Multiple Grenade Launcher", "Nailgun",
+    "Paddle",                    "Pickaxe",                   "Pitchfork",                 "Pump Shotgun",              "Python Revolver",           "Revolver",
+    "Rock",                      "Rocket Launcher",           "Salvaged Axe",              "Salvaged Cleaver",          "Salvaged Hammer",           "Salvaged Icepick",
+    "Salvaged Sword",            "Satchel Charge",            "Semi-Automatic Pistol",     "Semi-Automatic Rifle",      "Snowball Gun",              "Snowball",
+    "Spas-12 Shotgun",           "Spear",                     "Stone Hatchet",             "Stone Pickaxe",             "Stone Spear",               "Thompson",
+    "Timed Explosive Charge",    "Torch",                     "Waterpipe Shotgun"
+  ],
+  "path"       : "assets/img/killfeed-icons/rust/",
+  "player1"    : "Player1",
+  "player2"    : "Player2",
+  "additionals": ["Head", "No Scope"]
+}

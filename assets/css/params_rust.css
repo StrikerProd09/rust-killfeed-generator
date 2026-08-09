@@ -1,0 +1,57 @@
+@font-face {
+  font-family: "Heebo";
+  src: url("../font/Roboto-Medium.ttf");
+}
+@font-face {
+  font-family: "Roboto-Medium";
+  src: url("../font/Roboto-Medium.ttf");
+}
+@font-face {
+  font-family: "BebasNeue";
+  src: url("../font/BebasNeue.ttf");
+}
+
+:root {
+  --rkg-color-primary: #ca402a;
+  --rkg-color-secondary: #5e2c23;
+  --rkg-color-tertiary: #231d1a;
+
+  --rkg-color-gray-light: #4b4845;
+  --rkg-color-gray: #2d2c2b;
+  --rkg-color-gray-dark: #0c0b0b;
+  --rkg-color-white: #fff;
+  --rkg-color-black: #000;
+  --rkg-color-transparent: #c2c0bf00;
+
+  --rkg-link: var(--rkg-color-primary);
+
+  --rkg-font-primary: "Heebo", sans-serif;
+  --rkg-font-secondary: "BebasNeue", sans-serif;
+
+  --rkg-size-xs: 4px;
+  --rkg-size-sm: 8px;
+  --rkg-size-md: 16px;
+  --rkg-size-lg: 20px;
+  --rkg-size-xl: 24px;
+  --rkg-size-2xl: 32px;
+  --rkg-size-3xl: 48px;
+
+  --rkg-text-size: calc(var(--rkg-size-md) - 2px);
+  --rkg-title-size: var(--rkg-size-xl);
+  --rkg-text-size-sm: calc(var(--rkg-size-md) - 2px);
+
+  --rkg-screen-container: 1440px;
+
+  --rkg-border-radius-primary: 0px;
+  --rkg-border-radius-secondary: 0px;
+
+  --rkg-font-size-selected: 25px;
+  --rkg-font-family-selected: "Roboto-Medium", sans-serif;
+  --rkg-font-family-src-selected: "";
+  --rkg-p-x-selected: 20px;
+  --rkg-p-y-selected: 6px;
+  --rkg-font-color-selected: #ffffff;
+  --rkg-border-width-selected: 2px;
+  --rkg-border-color-selected: #1d1d1d;
+  --rkg-background-color-selected: #0c0c0c;
+}

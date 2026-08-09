@@ -1,83 +1,20 @@
-var images = [
-  "Assault Rifle",
-  "Beancan Grenade",
-  "Bolt Action Rifle",
-  "Bone Club",
-  "Bone Knife",
-  "Butcher Knife",
-  "Candy Cane Club",
-  "Chainsaw",
-  "Combat Knife",
-  "Compound Bow",
-  "Crossbow",
-  "Custom SMG",
-  "Double Barrel Shotgun",
-  "Eoka Pistol",
-  "F1 Grenade",
-  "Flame Thrower",
-  "Hatchet",
-  "Hunting Bow",
-  "Jackhammer",
-  "L96 Rifle",
-  "Longsword",
-  "LR-300 Assault Rifle",
-  "M39 Rifle",
-  "M92 Pistol",
-  "M249",
-  "Mace",
-  "Machete",
-  "MP5A4",
-  "Multiple Grenade Launcher",
-  "Nailgun",
-  "Paddle",
-  "Pickaxe",
-  "Pitchfork",
-  "Pump Shotgun",
-  "Python Revolver",
-  "Revolver",
-  "Rock",
-  "Rocket Launcher",
-  "Salvaged Axe",
-  "Salvaged Cleaver",
-  "Salvaged Hammer",
-  "Salvaged Icepick",
-  "Salvaged Sword",
-  "Satchel Charge",
-  "Semi-Automatic Pistol",
-  "Semi-Automatic Rifle",
-  "Snowball Gun",
-  "Snowball",
-  "Spas-12 Shotgun",
-  "Spear",
-  "Stone Hatchet",
-  "Stone Pickaxe",
-  "Stone Spear",
-  "Thompson",
-  "Timed Explosive Charge",
-  "Torch",
-  "Waterpipe Shotgun",
-];
-var path = "assets/img/weapons-icon/";
-var player1 = "Player1";
-var player2 = "Player2";
-var headshot = "Head.webp";
 var nr = 0;
 
 function bright() {
   document.getElementById("background_overlay").value = "#fff";
-  document.getElementById("rust-killfeed-generator").style.backgroundColor =
+  document.getElementById("killfeed-generator").style.backgroundColor =
     "#fff";
 }
 
 function dark() {
   document.getElementById("background_overlay").value = "#222222";
-  document.getElementById("rust-killfeed-generator").style.backgroundColor =
+  document.getElementById("killfeed-generator").style.backgroundColor =
     "#222222";
 }
 
 function background_apply() {
   var background = document.getElementById("background_overlay").value;
-  document.getElementById("rust-killfeed-generator").style.backgroundColor =
+  document.getElementById("killfeed-generator").style.backgroundColor =
     background;
 }
 
@@ -136,18 +73,37 @@ function applyItemStyle() {
   );
 }
 
-function loadFontFromUrl() {
-  var family = document.getElementById("item_font_family").value.trim();
-  var src = document.getElementById("item_font_src").value.trim();
-  if (!family || !src) {
-    console.warn("Provide both a Font Family name and a Font URL.");
+function loadFontFromUrl(src, family) {
+  var familyValue = family || "CustomFont";
+  var srcValue = src || document.getElementById("item_font_src").value.trim();
+  if (!srcValue) {
+    console.warn("Provide a Font URL.");
     return;
   }
   var style = document.createElement("style");
   style.innerHTML =
-    "@font-face { font-family: '" + family + "'; src: url('" + src + "'); }";
+    "@font-face { font-family: '" +
+    familyValue +
+    "'; src: url('" +
+    srcValue +
+    "'); }";
   document.head.appendChild(style);
-  console.log("Loading font: " + family + " from " + src);
+  document.documentElement.style.setProperty(
+    "--rkg-font-family-selected",
+    "'" + familyValue + "'",
+  );
+  console.log("Loading font: " + familyValue + " from " + srcValue);
+}
+
+function loadExampleFont(src, family) {
+  if (!src) {
+    return;
+  }
+  var srcInput = document.getElementById("item_font_src");
+  if (srcInput) {
+    srcInput.value = src;
+  }
+  loadFontFromUrl(src, family);
 }
 
 function loadImage(src) {
@@ -214,18 +170,26 @@ function drawKillfeedItem(item, scale) {
     var player2 = p2El ? p2El.textContent : "";
 
     var weaponEl = item.querySelector("img.sp_icon");
-    var headEl = item.querySelector(".headshot img");
+    var additionalEls = Array.prototype.slice.call(
+      item.querySelectorAll(".additional"),
+    );
     var weaponSrc = weaponEl ? weaponEl.getAttribute("src") : null;
-    var headSrc = headEl ? headEl.getAttribute("src") : null;
 
     var loaders = [];
     if (weaponSrc) loaders.push(loadImage(weaponSrc));
-    if (headSrc) loaders.push(loadImage(headSrc));
+    additionalEls.forEach(function (slot) {
+      var imgEl = slot.querySelector("img");
+      var src = imgEl ? imgEl.getAttribute("src") : null;
+      if (src) loaders.push(loadImage(src));
+    });
 
     Promise.all(loaders)
       .then(function (imgs) {
         var weapon = imgs[0] || null;
-        var head = imgs[1] || null;
+        var additionalsImages = [];
+        for (var k = 1; k < imgs.length; k++) {
+          additionalsImages.push(imgs[k]);
+        }
 
         var probe = document.createElement("canvas");
         var pctx = probe.getContext("2d");
@@ -237,13 +201,19 @@ function drawKillfeedItem(item, scale) {
         var weaponW = weapon
           ? iconMaxH * (weapon.naturalWidth / weapon.naturalHeight)
           : 0;
-        var headW = head
-          ? iconMaxH * (head.naturalWidth / head.naturalHeight)
-          : 0;
+        var additionalsW = additionalsImages.map(function (img) {
+          return img
+            ? iconMaxH * (img.naturalWidth / img.naturalHeight)
+            : 0;
+        });
 
         var gap = 10;
         var innerH = Math.max(fontSize, iconMaxH);
-        var contentW = w1 + gap + weaponW + (head ? gap + headW : 0) + gap + w2;
+        var contentW = w1 + gap + weaponW;
+        additionalsW.forEach(function (w) {
+          contentW += w ? gap + w : 0;
+        });
+        contentW += gap + w2;
         var totalW = contentW + padX * 2 + borderWidth * 2;
         var totalH = innerH + padY * 2 + borderWidth * 2;
         var centerY = totalH / 2;
@@ -288,9 +258,14 @@ function drawKillfeedItem(item, scale) {
           cursor += weaponW + gap;
         }
 
-        if (head) {
-          ctx.drawImage(head, cursor, centerY - iconMaxH / 2, headW, iconMaxH);
-          cursor += headW + gap;
+        for (var a = 0; a < additionalsImages.length; a++) {
+          var aImg = additionalsImages[a];
+          var aW = additionalsW[a];
+          if (!aImg || !aW) {
+            continue;
+          }
+          ctx.drawImage(aImg, cursor, centerY - iconMaxH / 2, aW, iconMaxH);
+          cursor += aW + gap;
         }
 
         ctx.fillText(player2, cursor, centerY);
@@ -363,7 +338,7 @@ function takeScreenShot() {
     (preview.classList.contains("killfeed-item") ||
       preview.querySelector(".killfeed-item"))
       ? preview
-      : document.getElementById("rust-killfeed-generator");
+      : document.getElementById("killfeed-generator");
 
   var allContent = document.getElementById("download1").checked;
 
@@ -391,6 +366,136 @@ function takeScreenShot() {
 }
 
 $(document).ready(function () {
+  var generatorElement = document.getElementById("killfeed-generator");
+  var paramsFile = generatorElement
+    ? generatorElement.getAttribute("params") || "killfeed-rust-params.json"
+    : "killfeed-rust-params.json";
+
+  function loadParams(fileName) {
+    if (typeof images !== "undefined") {
+      return;
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "assets/json/" + fileName, false);
+    try {
+      xhr.send(null);
+      if (xhr.status === 200 || xhr.status === 0) {
+        var params = JSON.parse(xhr.responseText);
+        images = params.images || [];
+        path = params.path || "assets/img/killfeed-icons/rust/";
+        player1 = params.player1 || "Player1";
+        player2 = params.player2 || "Player2";
+        additionals = params.additionals || [];
+      } else {
+        console.error("Failed to load params: " + fileName + " (" + xhr.status + ")");
+      }
+    } catch (e) {
+      console.error("Failed to load params: " + fileName, e);
+    }
+  }
+
+  loadParams(paramsFile);
+
+  function resolveFontSrc(src) {
+    try {
+      return new URL(src, window.location.href).href;
+    } catch (e) {
+      return src;
+    }
+  }
+
+  function selectLocalFont() {
+    var select = document.getElementById("item_font_family");
+    var opt = select.options[select.selectedIndex];
+    if (!opt) {
+      return;
+    }
+    var src = resolveFontSrc(opt.getAttribute("data-src") || "");
+    var srcInput = document.getElementById("item_font_src");
+    if (srcInput) {
+      srcInput.value = src;
+    }
+    loadFontFromUrl(src, opt.value);
+  }
+
+  function loadLocalFonts() {
+    var select = document.getElementById("item_font_family");
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "assets/json/fonts.json", false);
+    try {
+      xhr.send(null);
+      if (xhr.status === 200 || xhr.status === 0) {
+        var fonts = JSON.parse(xhr.responseText);
+        select.innerHTML = "";
+        fonts.forEach(function (font) {
+          var opt = document.createElement("option");
+          opt.value = font["font-family"];
+          opt.setAttribute("data-src", font.src || "");
+          opt.textContent = font["font-family"];
+          select.appendChild(opt);
+        });
+        select.value = fonts[0]["font-family"] || "";
+      } else {
+        console.error("Failed to load fonts (" + xhr.status + ")");
+      }
+    } catch (e) {
+      console.error("Failed to load fonts", e);
+    }
+
+    select.addEventListener("change", selectLocalFont);
+    selectLocalFont();
+  }
+
+  loadLocalFonts();
+
+  function additionalSlotsHtml(location) {
+    var html = "";
+    for (var i = 0; i < additionals.length; i++) {
+      html +=
+        "<span class='additional' data-additional='" +
+        additionals[i] +
+        "' data-location='" +
+        location +
+        "' data-order='" +
+        (i + 1) +
+        "'></span>";
+    }
+    return html;
+  }
+
+  function renderKillfeedItems() {
+    var items = document.querySelectorAll("killfeed-item");
+    if (!items.length) {
+      return;
+    }
+    items.forEach(function (el) {
+      var img = el.getAttribute("img") || "";
+      var p1 = el.getAttribute("player_name_1") || player1;
+      var p2 = el.getAttribute("player_name_2") || player2;
+      var id = el.getAttribute("id") || "";
+      var location = el.getAttribute("location") || "suffix";
+      var item = document.createElement("div");
+      item.className = "killfeed-item";
+      if (id) {
+        item.id = id;
+      }
+      item.innerHTML =
+        "<p class='player1'>" +
+        p1 +
+        "</p><img class='sp_icon' alt='Weapon' src='" +
+        path +
+        img +
+        ".webp'>" +
+        additionalSlotsHtml(location) +
+        "<p class='player2'>" +
+        p2 +
+        "</p>";
+      el.appendChild(item);
+    });
+  }
+
+  renderKillfeedItems();
+
   console.log("Length Array: " + images.length);
 
   var cookieNotice = document.getElementById("cookie-notice");
@@ -494,36 +599,49 @@ $(document).ready(function () {
   var text = "";
   for (var j = 0; j < images.length; j++) {
     text +=
-      "<div id=" +
-      j +
-      "_" +
-      images[j] +
-      " class='killfeed-item'><p class='player1'>" +
-      player1 +
-      "</p><img class='sp_icon' alt='Weapon' src='" +
-      path +
-      images[j] +
-      ".webp'><span class='headshot'></span><p class='player2'>" +
-      player2 +
-      "</p></div>";
+"<div id=" +
+        j +
+        "_" +
+        images[j] +
+        " class='killfeed-item'><p class='player1'>" +
+        player1 +
+        "</p><img class='sp_icon' alt='Weapon' src='" +
+        path +
+        images[j] +
+        ".webp'>" +
+        additionalSlotsHtml("suffix") +
+        "<p class='player2'>" +
+        player2 +
+        "</p></div>";
   }
-  document.getElementById("rust-killfeed-generator").innerHTML = text;
+  document.getElementById("killfeed-generator").innerHTML = text;
 
-  $("#headshot_1").click(function (evt) {
-    console.log("Headshot File Name: " + headshot);
-    var items = document.getElementsByClassName("headshot");
-    for (var i = 0; i < items.length; i++) {
-      items[i].innerHTML =
-        "<img class='sp_icon' alt='Weapon' src='" + path + headshot + "'>";
-    }
-  });
-  $("#headshot_0").click(function (evt) {
-    console.log("Headshot File Name: " + headshot);
-    var items = document.getElementsByClassName("headshot");
-    for (var i = 0; i < items.length; i++) {
-      items[i].innerHTML = "";
-    }
-  });
+  $(".toggle-switch input[type='checkbox'][location][order]").on(
+    "change",
+    function (evt) {
+      var location = $(this).attr("location");
+      var order = parseInt($(this).attr("order"), 10);
+      var enabled = $(this).is(":checked");
+      var name = additionals[order - 1];
+      var selector =
+        ".additional[data-location='" +
+        location +
+        "'][data-order='" +
+        order +
+        "']";
+      var slots = document.querySelectorAll(selector);
+      for (var i = 0; i < slots.length; i++) {
+        slots[i].innerHTML = enabled
+          ? "<img class='sp_icon' alt='" +
+            name +
+            "' src='" +
+            path +
+            name +
+            ".webp'>"
+          : "";
+      }
+    },
+  );
 
   $("#download_img").hide();
   $("#convert_elem").hide();
@@ -534,7 +652,7 @@ $(document).ready(function () {
     var id = $(this).attr("id");
     console.log("Element selected - ID: " + id);
     var preview = document.getElementById(id);
-    console.log("rust-killfeed-generator " + id + ": " + preview);
+    console.log("killfeed-generator " + id + ": " + preview);
     document.getElementById("target").innerHTML =
       "<div id='target_preview' id_target=" +
       id +
@@ -547,10 +665,10 @@ $(document).ready(function () {
   $("#download1").on("change", function (evt) {
     $("#convert_elem").show();
     var id = $(this).attr("id");
-    console.log("All rust-killfeed-generator selected - ID: " + id);
+    console.log("All killfeed-generator selected - ID: " + id);
     if ($(this).is(":checked")) {
-      var preview = document.getElementById("rust-killfeed-generator");
-      console.log("rust-killfeed-generator " + id + ": " + preview);
+      var preview = document.getElementById("killfeed-generator");
+      console.log("killfeed-generator " + id + ": " + preview);
       document.getElementById("target").innerHTML =
         "<div id='target_preview' id_target=" +
         id +
@@ -565,7 +683,7 @@ $(document).ready(function () {
     .getElementById("download_link")
     .addEventListener("click", function (evt) {
       var canvases = Array.prototype.slice.call(
-        document.querySelectorAll("#rust-killfeed-generator-output canvas"),
+        document.querySelectorAll("#killfeed-generator-output canvas"),
       );
       if (canvases.length) {
         if (document.getElementById("download1").checked) {
