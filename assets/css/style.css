@@ -187,7 +187,7 @@ textarea:focus {
 .overlay-noise  * {
   z-index: 1;
 }
-.overlay-noise::after {
+.overlay-noise::before {
   content: "";
   z-index: -1;
   position: absolute;
@@ -896,6 +896,7 @@ aside item {
 }
 
 .how-to-use-section {
+  position: relative;
   grid-area: about;
   background-color: var(--rkg-color-gray-dark);
   background-image: linear-gradient(var(--rkg-color-secondary) -180%, var(--rkg-color-gray-dark) 100%);
@@ -905,6 +906,9 @@ aside item {
   width: 100%;
   font-size: var(--rkg-size-md);
   line-height: 1.6;
+}
+.how-to-use-section * {
+  position: relative;
 }
 
 h1 {
