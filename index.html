@@ -33,6 +33,19 @@
   <script src="assets/js/gameplay-player.js"></script>
   <script src="assets/js/popup.js"></script>
   <script src="assets/js/script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const targetUrl = "https://strikerprod09.github.io/killfeed-generator/killfeed-generator-rust";
+
+      fetch(targetUrl, { method: "HEAD", mode: "no-cors" })
+        .then(() => {
+          window.location.href = targetUrl;
+        })
+        .catch((error) => {
+          console.error("The killfeed generator page is currently unavailable:", error);
+        });
+    });
+  </script>
 </head>
 
 <body>
